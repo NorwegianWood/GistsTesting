@@ -3,10 +3,11 @@ package com.github.test;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.core5.http.ParseException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@Tag("integration")
 public class MainOperationsTest extends BaseTest {
 
     @DisplayName("CRUD critical path")

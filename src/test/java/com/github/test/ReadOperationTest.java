@@ -2,6 +2,7 @@ package com.github.test;
 
 import org.apache.hc.core5.http.ParseException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * <a href="https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#get-a-gist">...</a>
  */
+@Tag("integration")
 public class ReadOperationTest extends BaseTest {
 
     /**

@@ -2,6 +2,7 @@ package com.github.test;
 
 import org.apache.hc.core5.http.ParseException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * <a href="https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#update-a-gist">...</a>
  */
+@Tag("integration")
 public class UpdateOperationTest extends BaseTest {
     /*
     To delete a file, set the whole file to null. For example: hello.py : null

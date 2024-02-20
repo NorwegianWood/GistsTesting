@@ -8,10 +8,12 @@ import java.util.Arrays;
 import org.apache.hc.client5.http.classic.methods.*;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("integration")
 public class CreationPositiveTest extends BaseTest {
 
     /**
