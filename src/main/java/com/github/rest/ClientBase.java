@@ -42,8 +42,6 @@ public class ClientBase {
         var response = client.execute(request);
         var reader = new HttpResponseReader(response);
         var payload = reader.getPayload();
-
-        logger.info("Response: " + System.lineSeparator() + payload);
         return reader;
     }
 
