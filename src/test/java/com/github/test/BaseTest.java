@@ -28,17 +28,21 @@ public class BaseTest {
     String fileName = "testFile";
     String content = "testContent";
     String description = "testDescription";
-    private static Properties properties;
     static String baseUrl;
     static String owner;
+    static String token;
     ClientBase clientBase = new ClientBase();
 
     @BeforeAll
     public static void setUp() throws IOException {
-        properties = new Properties();
+        Properties properties = new Properties();
         properties.load(new FileInputStream("src/test/resources/base.properties"));
         baseUrl = properties.getProperty("baseUrl");
         owner = properties.getProperty("owner");
+        token = System.getenv("API_TOKEN");
+        if (Objects.isNull(token)) {
+            token = properties.getProperty("token");
+        }
     }
 
     @AfterEach
@@ -76,7 +80,8 @@ public class BaseTest {
 
     void addHeaders(HttpUriRequestBase request) {
         request.addHeader("Accept", "application/vnd.github.v3+json");
-        request.addHeader("Authorization", "Bearer " + properties.getProperty("token"));
+
+        request.addHeader("Authorization", "Bearer " + token);
         request.addHeader("X-GitHub-Api-Version", "2022-11-28");
         request.addHeader("Content-Type", "application/json");
     }
