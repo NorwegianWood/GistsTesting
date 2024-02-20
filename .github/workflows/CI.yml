@@ -28,5 +28,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Set up environment variables
+        run: echo "API_TOKEN=${{ secrets.AUTH_TOKEN }}" >> $GITHUB_ENV
+
       - name: Build and test with Maven
         run: mvn -B clean verify -Dgroups=integration
