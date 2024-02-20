@@ -47,9 +47,6 @@ public class ClientBase {
 
     public HttpResponseReader executeRequestWithEntity(ClassicHttpRequest httpRequest) throws IOException, ParseException {
         logRequest(httpRequest);
-        logger.info("Request body: " +
-                System.lineSeparator() +
-                EntityUtils.toString(httpRequest.getEntity()));
         return execute(httpRequest);
     }
 
