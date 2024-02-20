@@ -39,7 +39,7 @@ public class BaseTest {
         properties.load(new FileInputStream("src/test/resources/base.properties"));
         baseUrl = properties.getProperty("baseUrl");
         owner = properties.getProperty("owner");
-        token = System.getenv("AUTH_TOKEN");
+        token = System.getenv("API_TOKEN");
         if (Objects.isNull(token)) {
             token = properties.getProperty("token");
         }
