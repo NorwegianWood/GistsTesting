@@ -108,17 +108,20 @@ public class BaseTest {
 
     @Step("Check gist default properties")
     void checkGistDefaultState(String fileName, String content, String description, Gist gist) {
-        Optional.ofNullable(gist)
-                .map(Gist::getFiles)
-                .map(filesMap -> filesMap.get(fileName)).ifPresent(file -> {
-                            assertEquals(description, gist.getDescription(), "Gist description is not as expected");
-                            assertFalse(gist.isPublic(), "Gist is public");
-                            assertFalse(gist.isTruncated(), "Gist is not truncated");
-                            assertEquals(file.getFilename(), fileName, "Filename is not as expected");
-                            assertEquals(file.getContent(), content, "File content is not as expected");
-                            assertFalse(file.isTruncated(), "File is not truncated");
-                        }
-                );
+        var files = gist.getFiles();
+        if (Objects.isNull(files)) {
+            throw new IllegalArgumentException("Something is wrong with the gist: " + gist);
+        }
+        var file = files.get(fileName);
+        if (Objects.nonNull(file)) {
+            assertEquals(file.getFilename(), fileName, "Filename is not as expected");
+            assertEquals(file.getContent(), content, "File content is not as expected");
+            assertFalse(file.isTruncated(), "File is not truncated");
+        }
+
+        assertEquals(description, gist.getDescription(), "Gist description is not as expected");
+        assertFalse(gist.isPublic(), "Gist is public");
+        assertFalse(gist.isTruncated(), "Gist is not truncated");
     }
 
     @Step("Delete gist {gistId}")

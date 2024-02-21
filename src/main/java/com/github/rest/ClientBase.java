@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 public class ClientBase {
     private static final Logger logger = Logger.getLogger(ClientBase.class.getName());
     private final CloseableHttpClient client = HttpClients.createDefault();
+
     public static class HttpResponseReader {
         private final CloseableHttpResponse response;
         private String payload;
@@ -34,18 +35,16 @@ public class ClientBase {
     }
 
     private void logRequest(ClassicHttpRequest request) {
-        logger.info("Request: "+ request.toString());
-        logger.info("Headers: "+ Arrays.toString(request.getHeaders()));
+        logger.info("Request: " + request.toString());
+        logger.info("Headers: " + Arrays.toString(request.getHeaders()));
     }
 
-    private HttpResponseReader execute(ClassicHttpRequest request) throws IOException, ParseException {
+    private HttpResponseReader execute(ClassicHttpRequest request) throws IOException {
         var response = client.execute(request);
-        var reader = new HttpResponseReader(response);
-        var payload = reader.getPayload();
-        return reader;
+        return new HttpResponseReader(response);
     }
 
-    public HttpResponseReader executeRequestWithEntity(ClassicHttpRequest httpRequest) throws IOException, ParseException {
+    public HttpResponseReader executeRequestWithEntity(ClassicHttpRequest httpRequest) throws IOException {
         logRequest(httpRequest);
         return execute(httpRequest);
     }
@@ -57,7 +56,7 @@ public class ClientBase {
         return response.getCode();
     }
 
-    public HttpResponseReader get(HttpGet httpGet) throws IOException, ParseException {
+    public HttpResponseReader get(HttpGet httpGet) throws IOException {
         logRequest(httpGet);
         return execute(httpGet);
     }
