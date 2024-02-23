@@ -51,7 +51,7 @@ public class ClientBase {
 
     public int delete(HttpDelete httpDelete) throws IOException {
         logRequest(httpDelete);
-        CloseableHttpResponse response = client.execute(httpDelete);
+        var response = client.execute(httpDelete);
         EntityUtils.consumeQuietly(response.getEntity());
         return response.getCode();
     }

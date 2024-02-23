@@ -35,7 +35,7 @@ public class BaseTest {
 
     @BeforeAll
     public static void setUp() throws IOException {
-        Properties properties = new Properties();
+        var properties = new Properties();
         properties.load(new FileInputStream("src/test/resources/base.properties"));
         baseUrl = properties.getProperty("baseUrl");
         owner = properties.getProperty("owner");
@@ -61,7 +61,7 @@ public class BaseTest {
     }
 
     public static List<Gist> parseGists(String jsonString) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        var objectMapper = new ObjectMapper();
         var listType = objectMapper.getTypeFactory().constructCollectionType(List.class, Gist.class);
         return objectMapper.readValue(jsonString, listType);
     }
@@ -80,7 +80,6 @@ public class BaseTest {
 
     void addHeaders(HttpUriRequestBase request) {
         request.addHeader("Accept", "application/vnd.github.v3+json");
-
         request.addHeader("Authorization", "Bearer " + token);
         request.addHeader("X-GitHub-Api-Version", "2022-11-28");
         request.addHeader("Content-Type", "application/json");

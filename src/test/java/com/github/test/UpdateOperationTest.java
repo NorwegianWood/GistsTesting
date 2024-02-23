@@ -50,7 +50,7 @@ public class UpdateOperationTest extends BaseTest {
     public void checkRequiredParams(boolean originalGistId, String newBody, String expectedResponse) throws IOException, ParseException {
         var responseJson = sendCreateGist(body, description, fileName, content);
         var gist = getGistFromResponse(responseJson);
-        String id = originalGistId ? gist.getId() : "";
+        var id = originalGistId ? gist.getId() : "";
         responseJson = updateGist(id, newBody, null, fileName, content);
         assertThat("Response message is incorrect", responseJson, containsString(expectedResponse));
     }

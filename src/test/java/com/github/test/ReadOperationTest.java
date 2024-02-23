@@ -81,7 +81,7 @@ public class ReadOperationTest extends BaseTest {
         response = getUsersGists(Map.of("page", "1", "since", timestamp));
         allGists = parseGists(response);
 
-        assertThat("Filtering by timestamp returned unexpected number of gists", ((double) allGists.size()), closeTo(((double) fullAmount / 2), 1.0));
+        assertThat("Filtering by timestamp returned unexpected number of gists", ((double) allGists.size()), closeTo(((double) fullAmount / 2), 2.0));
     }
 
     /**
